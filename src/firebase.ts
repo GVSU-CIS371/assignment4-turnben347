@@ -1,3 +1,6 @@
+import { getFirestore } from "firebase/firestore";
+//import { initializeApp } from "firebase/app";
+
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
@@ -5,13 +8,18 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCrBznc7GwQhXwQpS3qpLk3tCUhIQKnTLg",
-  authDomain: "cis371-a2b0d.firebaseapp.com",
-  projectId: "cis371-a2b0d",
-  storageBucket: "cis371-a2b0d.firebasestorage.app",
-  messagingSenderId: "273703238164",
-  appId: "1:273703238164:web:6a053b1d21b7de5309c501"
+  apiKey: "AIzaSyAT7EfKJy2K37QdcZOdHQOAXfeiOf2g0Fc",
+  authDomain: "cis371-3597a.firebaseapp.com",
+  projectId: "cis371-3597a",
+  storageBucket: "cis371-3597a.firebasestorage.app",
+  messagingSenderId: "548276375636",
+  appId: "1:548276375636:web:6194f38739d6084c945dc1"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+//const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+export default db;
