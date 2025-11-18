@@ -8,12 +8,12 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAT7EfKJy2K37QdcZOdHQOAXfeiOf2g0Fc",
-  authDomain: "cis371-3597a.firebaseapp.com",
-  projectId: "cis371-3597a",
-  storageBucket: "cis371-3597a.firebasestorage.app",
-  messagingSenderId: "548276375636",
-  appId: "1:548276375636:web:6194f38739d6084c945dc1"
+  apiKey: "AIzaSyCrBznc7GwQhXwQpS3qpLk3tCUhIQKnTLg",
+  authDomain: "cis371-a2b0d.firebaseapp.com",
+  projectId: "cis371-a2b0d",
+  storageBucket: "cis371-a2b0d.firebasestorage.app",
+  messagingSenderId: "273703238164",
+  appId: "1:273703238164:web:6a053b1d21b7de5309c501"
 };
 
 // Initialize Firebase
