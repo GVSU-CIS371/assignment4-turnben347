@@ -1,80 +1,101 @@
 <template>
   <div>
+    <!-- Beverage Mug -->
     <Beverage :isIced="beverageStore.currentTemp === 'Cold'" />
+
+    <!-- Temperature options -->
     <ul>
       <li>
-        <template v-for="temp in beverageStore.temps" :key="temp">
-          <label>
-            <input
-              type="radio"
-              name="temperature"
-              :id="`r${temp}`"
-              :value="temp"
-              v-model="beverageStore.currentTemp"
-            />
-            {{ temp }}
-          </label>
-        </template>
+        <label v-for="temp in beverageStore.temps" :key="temp">
+          <input
+            type="radio"
+            name="temperature"
+            :value="temp"
+            v-model="beverageStore.currentTemp"
+          />
+          {{ temp }}
+        </label>
       </li>
     </ul>
+
+    <!-- Base options -->
     <ul>
       <li>
-        <template v-for="b in beverageStore.bases" :key="b.id">
-          <label>
-            <input
-              type="radio"
-              name="bases"
-              :id="`r${b.id}`"
-              :value="b"
-              v-model="beverageStore.currentBase"
-            />
-            {{ b.name }}
-          </label>
-        </template>
+        <label v-for="base in beverageStore.bases" :key="base.id">
+          <input
+            type="radio"
+            name="base"
+            :value="base"
+            v-model="beverageStore.currentBase"
+          />
+          {{ base.name }}
+        </label>
       </li>
     </ul>
+
+    <!-- Syrup options -->
     <ul>
       <li>
-        <template v-for="s in beverageStore.syrups" :key="s.id">
-          <label>
-            <input
-              type="radio"
-              name="syrups"
-              :id="`r${s.id}`"
-              :value="s"
-              v-model="beverageStore.currentSyrup"
-            />
-            {{ s.name }}
-          </label>
-        </template>
+        <label v-for="syrup in beverageStore.syrups" :key="syrup.id">
+          <input
+            type="radio"
+            name="syrup"
+            :value="syrup"
+            v-model="beverageStore.currentSyrup"
+          />
+          {{ syrup.name }}
+        </label>
       </li>
     </ul>
+
+    <!-- Creamer options -->
     <ul>
       <li>
-        <template v-for="c in beverageStore.creamers" :key="c.id">
-          <label>
-            <input
-              type="radio"
-              name="creamers"
-              :id="`r${c.id}`"
-              :value="c"
-              v-model="beverageStore.currentCreamer"
-            />
-            {{ c.name }}
-          </label>
-        </template>
+        <label v-for="creamer in beverageStore.creamers" :key="creamer.id">
+          <input
+            type="radio"
+            name="creamer"
+            :value="creamer"
+            v-model="beverageStore.currentCreamer"
+          />
+          {{ creamer.name }}
+        </label>
       </li>
     </ul>
-    <input type="text" placeholder="Beverage Name" />
-    <button>🍺 Make Beverage</button>
+
+    <!-- Beverage Name and Button -->
+    <input
+      v-model="beverageStore.currentName"
+      type="text"
+      placeholder="Beverage Name"
+    />
+    <button @click="beverageStore.makeBeverage()">🍺 Make Beverage</button>
+
+    <!-- Saved Beverages -->
+    <div class="saved-beverages">
+      <label
+        v-for="bev in beverageStore.beverages"
+        :key="bev.id || bev.name"
+      >
+        <input
+          type="radio"
+          name="saved"
+          @click="beverageStore.showBeverage(bev)"
+        />
+        {{ bev.name }}
+      </label>
+    </div>
   </div>
-  <div id="beverage-container" style="margin-top: 20px"></div>
 </template>
 
 <script setup lang="ts">
 import Beverage from "./components/Beverage.vue";
 import { useBeverageStore } from "./stores/beverageStore";
+
 const beverageStore = useBeverageStore();
+
+// Initialize Firestore data on load
+beverageStore.init();
 </script>
 
 <style lang="scss">
@@ -84,11 +105,23 @@ html {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 100%;
   background-color: #6e4228;
   background: linear-gradient(to bottom, #6e4228 0%, #956f5a 100%);
 }
+
 ul {
   list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+
+.saved-beverages {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
 }
 </style>
