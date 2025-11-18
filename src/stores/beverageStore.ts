@@ -42,7 +42,10 @@ export const useBeverageStore = defineStore("BeverageStore", {
 
       // Load saved beverages
       const beveragesSnap = await getDocs(collection(db, "beverages"));
-      this.beverages = beveragesSnap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+      this.beverages = beveragesSnap.docs.map(doc => ({
+        id: doc.id,
+        ...(doc.data() as Beverage)
+      }));
 
       // Set defaults
       if (this.bases.length > 0) this.currentBase = this.bases[0];
